@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Summary</h3>
+<p><strong>Total spent:</strong> {{ "%.2f"|format(total) }}</p>
+
+<h5>By Category</h5>
+<ul class="list-group mb-3">
+  {% for k,v in by_cat.items() %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ k }} <span class="badge bg-primary rounded-pill">{{ "%.2f"|format(v) }}</span>
+    </li>
+  {% endfor %}
+</ul>
+
+<h5>Monthly Totals</h5>
+<table class="table">
+  <thead><tr><th>Month</th><th>Total</th></tr></thead>
+  <tbody>
+    {% for month,amt in monthly %}
+      <tr><td>{{ month }}</td><td>{{ "%.2f"|format(amt) }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
